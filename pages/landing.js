@@ -55,7 +55,7 @@ export default function LandingPage(props) {
               <Button
                 color="danger"
                 size="md"
-                href="#Donation"
+                href="#donation"
                 rel="noopener noreferrer"
                 round
               >
