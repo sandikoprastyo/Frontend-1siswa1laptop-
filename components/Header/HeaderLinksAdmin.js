@@ -8,6 +8,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import Icon from '@material-ui/core/Icon';
+import { useRouter } from 'next/router';
+import cookieCutter from 'cookie-cutter';
 
 // @material-ui/icons
 import { Apps, CloudDownload } from '@material-ui/icons';
@@ -22,7 +24,13 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
-  
+  const router = useRouter();
+
+  const _handleLogOut = () => {
+    //cookieCutter.remove('token');
+    router.push('/landing');
+  };
+
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -49,8 +57,12 @@ export default function HeaderLinks(props) {
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button href='/login' color='transparent' className={classes.navLink}>
-          <Icon className={classes.icons}>login</Icon>Login
+        <Button
+          onClick={_handleLogOut}
+          color='transparent'
+          className={classes.navLink}
+        >
+          <Icon className={classes.icons}>login</Icon>Logout
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>

@@ -8,6 +8,7 @@ module.exports = withPlugins([[withImages]], {
   modules: [
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
 
   axios: {
