@@ -173,7 +173,7 @@ export default function WorkSection() {
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
                 />
-                <p color='red'>{err}</p>
+                <p className={classes.error}>{err}</p>
               </GridItem>
               <GridItem xs={12} sm={12} md={6}>
                 <TextField
