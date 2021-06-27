@@ -71,9 +71,9 @@ export default function LoginPage(props,app) {
           if (res.status === 200) {
             cookieCutter.set('token', res.data.token)
             if (res.data.message.role === 'penerima') {
-              Router.push('/dashboard_penerima');
+              Router.push('/penerima');
             } else {
-              Router.push('/dashboard_admin');
+              Router.push('/admin');
             }
           }
         }).catch((err) => {

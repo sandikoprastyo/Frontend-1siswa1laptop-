@@ -12,10 +12,13 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
+
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import cookieCutter from 'cookie-cutter';
 import { useRouter } from 'next/router';
+import SideNavbar from './sideNavbar.js';
+import Layout from '../../layouts/admin.js';
 
 
 const useStyles = makeStyles(styles, {
@@ -76,8 +79,12 @@ const dashboardAdmin = (props) => {
         },
       })
       .then((res) => {
-        setDonatur(res.data.message);
-      });
+        if(res.status === 200) { 
+          setDonatur(res.data.message);
+        } else {  
+          console.log(res)
+        }
+      })
   };
 
   /* get penerima */
@@ -133,11 +140,13 @@ const dashboardAdmin = (props) => {
         }}
         {...rest}
       />
+      <div className={classes.wrapper_container}>
+        <SideNavbar/>
       <div className={classes.container}>
-        <h1>Dashboard admin</h1>
         <div className='wrapper_component'>
+        <h1>Dashboard admin</h1>
           <div className="wrapper_component_title">
-            <h2>Data donatur list</h2>
+           <input type="text" placeholder="search..."/><button>Search</button>
           {/*   <h2>Data penerima list</h2> */}
           </div>
           <TableContainer component={Paper}>
@@ -236,7 +245,8 @@ const dashboardAdmin = (props) => {
           </TableContainer>
         </div> */}
       </div>
-    </div>
+      </div>
+      </div>      
   );
 };
 
