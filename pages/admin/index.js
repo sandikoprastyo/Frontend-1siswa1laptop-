@@ -16,9 +16,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import cookieCutter from 'cookie-cutter';
-import { useRouter } from 'next/router';
 import SideNavbar from './sideNavbar.js';
-import Layout from '../../layouts/admin.js';
+import Router from 'next/router';
 
 
 const useStyles = makeStyles(styles, {
@@ -30,7 +29,6 @@ const dashboardRoutes = [];
 
 const dashboardAdmin = (props) => {
   const classes = useStyles();
-  const router = useRouter();
 
   const [donatur, setDonatur] = React.useState([]);
   const [penerima, setPenerima] = React.useState([]);
@@ -100,9 +98,13 @@ const dashboardAdmin = (props) => {
       });
   };
 
+  const _handleSearch = (e) => {
+    consle.log(e.target.value)
+  }
+
   /* update data donatur */
-  const handleUpdate = (id) => {
-    alert(`update ${id}`)
+  const handleUpdate = (id) => { 
+    Router.push(`/admin/edit/${id}`)
   }
 
   /* delete by id donatur */
@@ -146,7 +148,7 @@ const dashboardAdmin = (props) => {
         <div className='wrapper_component'>
         <h1>Dashboard admin</h1>
           <div className="wrapper_component_title">
-           <input type="text" placeholder="search..."/><button>Search</button>
+              <input type="text" placeholder="search..." onChange={(e) => _handleSearch(e)}/>
           {/*   <h2>Data penerima list</h2> */}
           </div>
           <TableContainer component={Paper}>
@@ -175,34 +177,10 @@ const dashboardAdmin = (props) => {
                     <TableCell align='right'>{row.desc}</TableCell>
                     <TableCell align='right'>{row.item_donasi}</TableCell>
                     <TableCell align='right'>{row.category}</TableCell>
+                    <TableCell align='right'>{row.status}</TableCell>
+                    <TableCell align='right'>{row.condition}</TableCell>
                     <TableCell align='right'>
-                      <TextField
-                        id='standard-select-currency'
-                        select
-                        fullWidth
-                      >
-                        {statusValue.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.value}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </TableCell>
-                    <TableCell align='right'>
-                    <TextField
-                       id='standard-select-currency'
-                       select
-                       fullWidth
-                     >
-                       {conditionValue.map((option) => (
-                         <MenuItem key={option.value} value={option.value}>
-                           {option.value}
-                         </MenuItem>
-                       ))}
-                     </TextField>
-                    </TableCell>
-                    <TableCell align='right'>
-                      <button onClick={() => handleUpdate(row._id)}>Update</button>
+                      <button onClick={() => handleUpdate(row._id)}>Edit</button>
                       <button onClick={() => handleDelete(row._id)}>Delete</button>
                     </TableCell>
                   </TableRow>

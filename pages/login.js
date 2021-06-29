@@ -70,11 +70,7 @@ export default function LoginPage(props,app) {
         .then((res) => {
           if (res.status === 200) {
             cookieCutter.set('token', res.data.token)
-            if (res.data.message.role === 'penerima') {
-              Router.push('/penerima');
-            } else {
-              Router.push('/admin');
-            }
+            Router.push('/admin');
           }
         }).catch((err) => {
           console.log(err)
