@@ -43,12 +43,12 @@ const dashboardAdmin = (props) => {
   React.useEffect(() => {
     const cookie = cookieCutter.get('token');
     setTimeout(() => {
-      getDonatur(cookie);
+      getSiswa(cookie);
     }, 1000);
   }, []);
 
   /* get siswa */
-  const getDonatur = (cookie) => {
+  const getSiswa = (cookie) => {
     axios
       .get(
         `https://protected-scrubland-94267.herokuapp.com/siswa/${slug.id}`,
@@ -92,7 +92,7 @@ const dashboardAdmin = (props) => {
     }
     axios
       .post(
-        `https://protected-scrubland-94267.herokuapp.com/donatur/${slug.id}`,dataUpdate, {
+        `https://protected-scrubland-94267.herokuapp.com/siswa/${slug.id}`,dataUpdate, {
           headers: {
             token: cookie,
           }

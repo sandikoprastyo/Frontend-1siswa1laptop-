@@ -42,12 +42,12 @@ const dashboardAdmin = (props) => {
   React.useEffect(() => {
     const cookie = cookieCutter.get('token');
     setTimeout(() => {
-      getDonatur(cookie);
+      getStock(cookie);
     }, 1000);
   }, []);
 
   /* get donatur */
-  const getDonatur = (cookie) => {
+  const getStock = (cookie) => {
     axios
       .get(
         `https://protected-scrubland-94267.herokuapp.com/donatur/${slug.id}`,
@@ -118,7 +118,7 @@ const dashboardAdmin = (props) => {
         {...rest}
       />
       <div className={classes.container}>
-        <h2>Data donatur edit</h2>
+        <h2>Data stock edit</h2>
         <div>
           <GridContainer>
             <GridItem xs={12} sm={12} md={8} lg={6}>
