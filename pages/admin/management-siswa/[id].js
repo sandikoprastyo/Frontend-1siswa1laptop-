@@ -30,10 +30,11 @@ const dashboardAdmin = (props) => {
   const [name, setName] = React.useState()
   const [email, setEmail] = React.useState()
   const [phone, setPhone] = React.useState()
-  const [category, setCategory] = React.useState()
-  const [itemDonasi, setItemDonasi] = React.useState()
   const [desc, setDesc] = React.useState()
-  const [condition, setCondition] = React.useState()
+
+  const [alamatRumah, setAlamatRumah] = React.useState()
+  const [namaSekolah, setNamaSekolah] = React.useState()
+  const [alamatSekolah, setAlamatSekolah] = React.useState()
   const [status, setStatus] = React.useState()
 
 
@@ -46,11 +47,11 @@ const dashboardAdmin = (props) => {
     }, 1000);
   }, []);
 
-  /* get donatur */
+  /* get siswa */
   const getDonatur = (cookie) => {
     axios
       .get(
-        `https://protected-scrubland-94267.herokuapp.com/donatur/${slug.id}`,
+        `https://protected-scrubland-94267.herokuapp.com/siswa/${slug.id}`,
         {
           headers: {
             token: cookie,
@@ -61,16 +62,19 @@ const dashboardAdmin = (props) => {
         setName(res.data.message.name);
         setEmail(res.data.message.email);
         setPhone(res.data.message.phone);
-        setCategory(res.data.message.category);
+        setDesc(res.data.message.desc);
+        
+        setAlamatRumah(res.data.message.alamat_rumah);
+        setNamaSekolah(res.data.message.nama_sekolah);
+        setAlamatSekolah(res.data.message.alamat_sekolah);
         setStatus(res.data.message.status);
 
-        setDesc(res.data.message.desc);
-        setItemDonasi(res.data.message.item_donasi);
-        setCondition(res.data.message.condition);
+      /*   setIdAdmin(res.data.message.id_admin);
+        setIdStock(res.data.message.id_stock); */
       });
   };
 
-  /* update data donatur */
+  /* update data siswa */
   const handleUpdate = () => {
     const cookie = cookieCutter.get('token');
 
@@ -78,11 +82,13 @@ const dashboardAdmin = (props) => {
       name : name,
       email : email,
       phone : phone,
-      category : category,
-      item_donasi : itemDonasi,
-      condition : condition,
       desc : desc,
-      status : status
+      alamat_rumah : alamatRumah,
+      nama_sekolah : namaSekolah,
+      alamat_sekolah : alamatSekolah,
+      status : status,
+      id_admin: null,
+      id_stock: null
     }
     axios
       .post(
@@ -94,11 +100,11 @@ const dashboardAdmin = (props) => {
       )
       .then((res) => {
        
-           if (res.data === 'Donatur updated in server..!') {
-            alert('Donatur berhasil di update')
-            Router.push('/admin')
+           if (res.status === 200) {
+            alert('Siswa berhasil di update')
+            Router.push('/admin/management-siswa')
           } else {
-            alert('Donatur gagal di upadate')
+            alert('Siswa gagal di update')
           }
       
       });
@@ -118,7 +124,7 @@ const dashboardAdmin = (props) => {
         {...rest}
       />
       <div className={classes.container}>
-        <h2>Data donatur edit</h2>
+        <h2>Data Siswa edit</h2>
         <div>
           <GridContainer>
             <GridItem xs={12} sm={12} md={8} lg={6}>
@@ -156,31 +162,28 @@ const dashboardAdmin = (props) => {
           <GridContainer>
             <GridItem xs={12} sm={12} md={8} lg={6}>
               <label htmlFor='item_donasi' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Item Donasi</h4>
-                <input type='text' value={itemDonasi} name='item_donasi'  onChange={(e) => setItemDonasi(e.target.value)} />
+                <h4 style={{ color: 'black' }}>Alamat rumah</h4>
+                <input type='text' value={alamatRumah} name='item_donasi'  onChange={(e) => setAlamatRumah(e.target.value)} />
               </label>
 
               <label htmlFor='category' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Category</h4>
-                <input type='text' value={category} name='category'  onChange={(e) => setCategory(e.target.value)} />
+                <h4 style={{ color: 'black' }}>Nama sekolah</h4>
+                <input type='text' value={namaSekolah} name='category'  onChange={(e) => setNamaSekolah(e.target.value)} />
               </label>
               
             </GridItem>
             <GridItem xs={12} sm={12} md={8} lg={6}>
               <label htmlFor='condition' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Kondisi barang</h4>
-                <input type='text' value={condition} name='condition'  onChange={(e) => setCondition( e.target.value)} />
+                <h4 style={{ color: 'black' }}>Alamat sekolah</h4>
+                <input type='text' value={alamatSekolah} name='condition'  onChange={(e) => setAlamatSekolah( e.target.value)} />
               </label>
 
               <label htmlFor='status' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Status Donatur</h4>
+                <h4 style={{ color: 'black' }}>Status Siswa</h4>
                 <select name="status" onChange={(e) => setStatus(e.target.value)}>
                   <option value={status}>{status}</option>
                   <option value="Draft">Draft</option>
-                  <option value="Prospect">Prospect</option>
-                  <option value="Valid">Valid</option>
                   <option value="Done">Done</option>
-                  <option value="Cancel">Cancel</option>
                 </select>
               </label>
 
@@ -188,9 +191,8 @@ const dashboardAdmin = (props) => {
           </GridContainer>
 
           <button onClick={() => handleUpdate()}>Update</button>
-          <button onClick={() => Router.push('/admin')}>Cancel</button>
+          <button onClick={() => Router.push('/admin/management-siswa')}>Cancel</button>
               
-       
         </div>
       </div>
     </div>

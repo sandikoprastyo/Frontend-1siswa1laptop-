@@ -18,6 +18,8 @@ import cookieCutter from 'cookie-cutter';
 import { useRouter } from 'next/router';
 import SideNavbar from './sideNavbar.js';
 import Layout from '../../layouts/admin.js';
+import Router from 'next/router';
+
 
 const useStyles = makeStyles(styles, {
   table: {
@@ -30,86 +32,41 @@ const dashboardAdmin = (props) => {
   const classes = useStyles();
   const router = useRouter();
 
-  const [donatur, setDonatur] = React.useState([]);
-  const [penerima, setPenerima] = React.useState([]);
-  const [status, setStatus] = React.useState([]);
-  const [condition, setCondition] = React.useState([]);
+  const [siswa, setSiswa] = React.useState([]);
+
   const { ...rest } = props;
 
   React.useEffect(() => {
     const cookie = cookieCutter.get('token');
     // getDonatur(cookie);
-    getPenerima(cookie);
+    getSiswa(cookie);
   }, []);
 
-  /* data for select */
-  const statusValue = [
-    {
-      value: 'Pelabelan',
-    },
-    {
-      value: 'Service',
-    },
-    {
-      value: 'Penyaluran',
-    },
-  ];
-
-  /* data for select */
-  const conditionValue = [
-    {
-      value: 'Rusak bisa diperbaiki',
-    },
-    {
-      value: 'Rusak tidak bisa diperbaiki',
-    },
-    {
-      value: 'Normal',
-    },
-  ];
-
-  /* get donatur */
-  const getDonatur = (cookie) => {
+  /* get siswa */
+  const getSiswa = (cookie) => {
     axios
-      .get('https://protected-scrubland-94267.herokuapp.com/donatur', {
+      .get('https://protected-scrubland-94267.herokuapp.com/siswa', {
         headers: {
           token: cookie,
         },
       })
       .then((res) => {
-        if (res.status === 200) {
-          setDonatur(res.data.message);
-        } else {
-          console.log(res);
-        }
+        setSiswa(res.data.message);
       });
   };
 
-  /* get penerima */
-  const getPenerima = (cookie) => {
-    axios
-      .get('https://protected-scrubland-94267.herokuapp.com/penerima', {
-        headers: {
-          token: cookie,
-        },
-      })
-      .then((res) => {
-        setPenerima(res.data);
-      });
-  };
-
-  /* update data donatur */
+  /* update data siswa */
   const handleUpdate = (id) => {
-    alert(`update ${id}`);
+    Router.push(`/admin/management-siswa/${id}`)
   };
 
-  /* delete by id donatur */
+  /* delete by id siswa */
   const handleDelete = (id) => {
     if (confirm('Anda yakin ingin menghapus ?')) {
       const cookie = cookieCutter.get('token');
       axios
         .delete(
-          `https://protected-scrubland-94267.herokuapp.com/donatur/${id}`,
+          `https://protected-scrubland-94267.herokuapp.com/siswa/${id}`,
           {
             headers: {
               token: cookie,
@@ -118,7 +75,7 @@ const dashboardAdmin = (props) => {
         )
         .then((res) => {
           if (res.status == 200) {
-            getDonatur(cookie);
+            getSiswa(cookie);
           } else {
             const err = new Error('Coba lagi nanti!');
             alert(err);
@@ -145,34 +102,53 @@ const dashboardAdmin = (props) => {
         <SideNavbar />
         <div className={classes.container}>
           <div className='wrapper_component'>
-            <h1>Management Penerima</h1>
-            <div className='wrapper_component_title'>
+            <h1>Management Siswa</h1>
+            <div className={classes.wrapper_component_title}>
+              <div>
               <input type='text' placeholder='search...' />
               <button>Search</button>
+              </div>
+              <button onClick={() => Router.push('/admin/management-siswa/add')}>add</button>
             </div>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label='simple table'>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Name</TableCell>
+                    <TableCell align='right'>Name</TableCell>
                     <TableCell align='right'>Email</TableCell>
                     <TableCell align='right'>Phone</TableCell>
-                    <TableCell align='right'>Address</TableCell>
+                    <TableCell align='right'>Description</TableCell>
+                    <TableCell align='right'>Alamat Rumah</TableCell>
+                    <TableCell align='right'>Nama Sekolah</TableCell>
+                    <TableCell align='right'>Alamat sekolah</TableCell>
+                    <TableCell align='right'>Status</TableCell>
+                   {/*  <TableCell align='right'>id admin</TableCell>
+                    <TableCell align='right'>id stock</TableCell> */}
                     <TableCell align='right'>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {penerima.map((row, i) => (
+                  {siswa.map((row, i) => (
                     <TableRow key={i}>
                       <TableCell component='th' scope='row'>
                         {row.name}
                       </TableCell>
                       <TableCell align='right'>{row.email}</TableCell>
                       <TableCell align='right'>{row.phone}</TableCell>
-                      <TableCell align='right'>{row.address}</TableCell>
+                      <TableCell align='right'>{row.desc}</TableCell>
+                      <TableCell align='right'>{row.alamat_rumah}</TableCell>
+                      <TableCell align='right'>{row.nama_sekolah}</TableCell>
+                      <TableCell align='right'>{row.alamat_sekolah}</TableCell>
+                      <TableCell align='right'>{row.status}</TableCell>
+                {/*       <TableCell align='right'>{row.id_admin}</TableCell>
+                      <TableCell align='right'>{row.id_stock}</TableCell> */}
                       <TableCell align='right'>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                      <button onClick={() => handleUpdate(row._id)}>
+                          Update
+                        </button>
+                        <button onClick={() => handleDelete(row._id)}>
+                          Delete
+                        </button>
                       </TableCell>
                     </TableRow>
                   ))}

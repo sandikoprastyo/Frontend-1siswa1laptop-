@@ -176,11 +176,9 @@ const dashboardAdmin = (props) => {
                 <h4 style={{ color: 'black' }}>Status Donatur</h4>
                 <select name="status" onChange={(e) => setStatus(e.target.value)}>
                   <option value={status}>{status}</option>
-                  <option value="Draft">Draft</option>
-                  <option value="Prospect">Prospect</option>
-                  <option value="Valid">Valid</option>
-                  <option value="Done">Done</option>
-                  <option value="Cancel">Cancel</option>
+                  <option value="valid">Valid</option>
+                  <option value="unvalid">UnValid</option>
+                  <option value="cancel">Cancel</option>
                 </select>
               </label>
 

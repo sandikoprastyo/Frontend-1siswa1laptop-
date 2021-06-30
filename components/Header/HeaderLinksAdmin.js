@@ -27,7 +27,7 @@ export default function HeaderLinks(props) {
   const router = useRouter();
 
   const _handleLogOut = () => {
-    //cookieCutter.remove('token');
+  //  cookieCutter.removeAll('token');
     router.push('/landing');
   };
 

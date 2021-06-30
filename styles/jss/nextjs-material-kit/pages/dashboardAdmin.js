@@ -20,6 +20,11 @@ const dashboardAdmin = {
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: '#B9B7BD'
+  },
+  wrapper_component_title: {
+    display: 'flex',
+    flexSirection: 'row',
+    justifyContent: 'space-between',
   }
 };
 
