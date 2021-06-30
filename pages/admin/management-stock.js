@@ -60,7 +60,7 @@ const dashboardAdmin = (props) => {
 
   /* update data stock */
   const handleUpdate = (id) => {
-    Router.push(`/admin//management-stock/${id}`)
+    Router.push(`/admin/management-stock/${id}`)
   };
 
   /* delete by id stock */

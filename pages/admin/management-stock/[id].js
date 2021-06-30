@@ -3,6 +3,7 @@ import Header from 'components/Header/Header.js';
 import HeaderLinksAdmin from 'components/Header/HeaderLinksAdmin.js';
 import styles from '../../../styles/jss/nextjs-material-kit/pages/dashboardAdmin.js';
 
+import Link from 'next/link';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import cookieCutter from 'cookie-cutter';
@@ -186,7 +187,11 @@ const dashboardAdmin = (props) => {
           </GridContainer>
 
           <button onClick={() => handleUpdate()}>Update</button>
-          <button onClick={() => Router.push('/admin')}>Cancel</button>
+          <Link href="/admin/management-stock">
+            <button >
+              Cancel
+            </button>
+          </Link>
               
        
         </div>
