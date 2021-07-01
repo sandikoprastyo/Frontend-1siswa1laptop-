@@ -11,6 +11,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import download from "downloadjs";
 
 
 import axios from 'axios';
@@ -128,6 +130,41 @@ const dashboardAdmin = (props) => {
     } 
   }
 
+  const  handleCetak = async () => {
+      // Create a new PDFDocument
+      const pdfDoc = await PDFDocument.create()
+
+      // Embed the Times Roman font
+      const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+
+      // Add a blank page to the document
+      const page = pdfDoc.addPage()
+
+      // Get the width and height of the page
+      const { width, height } = page.getSize()
+
+      // Draw a string of text toward the top of the page
+      const fontSize = 30
+      page.drawText('Tanda Terima Donasi 1Siswa 1Laptop\n Name: \n Email	: \n Phone	: \n desc	: \n item_donasi : \n	category : \n	status : \n	kondisi : \n', {
+        x: 50,
+        y: height - 4 * fontSize,
+        size: fontSize,
+        font: timesRomanFont,
+        color:  rgb(0, 0, 0),
+      })
+
+      // Serialize the PDFDocument to bytes (a Uint8Array)
+      const pdfBytes = await pdfDoc.save()
+
+      // For example, `pdfBytes` can be:
+      //   • Written to a file in Node
+      //   • Downloaded from the browser
+      //   • Rendered in an <iframe>
+
+    		// Trigger the browser to download the PDF document
+        download(pdfBytes, "pdf-lib_creation_example.pdf", "application/pdf");
+  }
+
   return (
     <div>
       <Header
@@ -182,6 +219,7 @@ const dashboardAdmin = (props) => {
                     <TableCell align='right'>
                       <button onClick={() => handleUpdate(row._id)}>Edit</button>
                       <button onClick={() => handleDelete(row._id)}>Delete</button>
+                      <button onClick={() => handleCetak()}>Cetak</button>
                     </TableCell>
                   </TableRow>
                 ))}

@@ -89,7 +89,7 @@ const dashboardAdmin = (props) => {
         {...rest}
       />
       <div className={classes.container}>
-        <h2>Add stock barang</h2>
+        <h2>Add Siswa</h2>
         <div>
           <GridContainer>
             <GridItem xs={12} sm={12} md={8} lg={6}>

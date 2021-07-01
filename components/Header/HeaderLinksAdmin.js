@@ -27,34 +27,32 @@ export default function HeaderLinks(props) {
   const router = useRouter();
 
   const _handleLogOut = () => {
-  //  cookieCutter.removeAll('token');
+    //  cookieCutter.removeAll('token');
     router.push('/landing');
   };
 
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Button href='/landing' color='transparent' className={classes.navLink}>
-          <Icon className={classes.icons}>home</Icon> Home
-        </Button>
+        <Link href='/'>
+          <Button color='transparent' className={classes.navLink}>
+            <Icon className={classes.icons}>home</Icon> Home
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href='/landing#about'
-          color='transparent'
-          className={classes.navLink}
-        >
-          <Icon className={classes.icons}>about</Icon> About
-        </Button>
+        <Link href='/#about'>
+          <Button color='transparent' className={classes.navLink}>
+            <Icon className={classes.icons}>about</Icon> About
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href='/landing#donation'
-          color='transparent'
-          className={classes.navLink}
-        >
-          <Icon className={classes.icons}>contact</Icon> Donation
-        </Button>
+        <Link href='/#donation'>
+          <Button color='transparent' className={classes.navLink}>
+            <Icon className={classes.icons}>contact</Icon> Donation
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button

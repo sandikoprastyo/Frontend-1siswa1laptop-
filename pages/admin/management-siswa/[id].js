@@ -41,25 +41,21 @@ const dashboardAdmin = (props) => {
   const { ...rest } = props;
 
   React.useEffect(() => {
-    const cookie = cookieCutter.get('token');
-    setTimeout(() => {
-      getSiswa(cookie);
-    }, 1000);
-  }, []);
+    console.log(slug)
+
+    const cookie = cookieCutter.get('token');  
+    getSiswa(cookie);
+    
+  },[]);
+
+ 
 
   /* get siswa */
   const getSiswa = (cookie) => {
-    axios
-      .get(
-        `https://protected-scrubland-94267.herokuapp.com/siswa/${slug.id}`,
-        {
-          headers: {
-            token: cookie,
-          },
-        },
+    axios.get(`https://protected-scrubland-94267.herokuapp.com/siswa/${slug.id}`,{headers: {token: cookie,},},
       )
       .then((res) => {
-        setName(res.data.message.name);
+        setName(res.data.message.siswa_name);
         setEmail(res.data.message.email);
         setPhone(res.data.message.phone);
         setDesc(res.data.message.desc);
@@ -87,8 +83,8 @@ const dashboardAdmin = (props) => {
       nama_sekolah : namaSekolah,
       alamat_sekolah : alamatSekolah,
       status : status,
-      id_admin: null,
-      id_stock: null
+    /*   id_admin: null,
+      id_stock: null */
     }
     axios
       .post(

@@ -36,7 +36,7 @@ const dashboardAdmin = (props) => {
 
   const { ...rest } = props;
 
-  /* update data donatur */
+  /* add data stock */
   const handlePost = () => {
     const cookie = cookieCutter.get('token');
 
@@ -94,31 +94,22 @@ const dashboardAdmin = (props) => {
                   fullWidth: true,
                 }}
               /> */}
-              <label htmlFor='name' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Donatur</h4>
-                <input type='text' value={donatur} name='name' onChange={(e) => setDonatur(e.target.value) } />
+            <label htmlFor='name' style={{ padding: '0 50px' }}>
+                <h4 style={{ color: 'black' }}>Stock Name</h4>
+                <input type='text' value={stockName} name='stock name' onChange={(e) => setStockName(e.target.value) } />
               </label>
 
-              <label htmlFor='email' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Stock name</h4>
-                <input type='text' value={stockName} name='email' onChange={(e) => setStockName(e.target.value)} />
+              <label htmlFor='Serial Number' style={{ padding: '0 50px' }}>
+                <h4 style={{ color: 'black' }}>Serial Number</h4>
+                <input type='text' value={serialNumber} name='Serial Number'  onChange={(e) => setSerialNumber(e.target.value)} />
               </label>
             </GridItem>
             <GridItem xs={12} sm={12} md={8} lg={6}>
-              <label htmlFor='phone' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Serial number</h4>
-                <input type='text' value={serialNumber} name='phone' onChange={(e) => setSerialNumber( e.target.value)} />
-              </label>
-
-              <label htmlFor='desc' style={{ padding: '0 50px' }}>
+              <label htmlFor='category' style={{ padding: '0 50px' }}>
                 <h4 style={{ color: 'black' }}>Category</h4>
-                <input type='text' value={category} name='desc' onChange={(e) => setCategory(e.target.value)} />
+                <input type='text' value={category} name='category'  onChange={(e) => setCategory( e.target.value)} />
               </label>
-            </GridItem>
-          </GridContainer>
 
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={8} lg={6}>
               <label htmlFor='item_donasi' style={{ padding: '0 50px' }}>
                 <h4 style={{ color: 'black' }}>Status</h4>
                 <select name="status" onChange={(e) => setStatus(e.target.value)}>
@@ -129,28 +120,8 @@ const dashboardAdmin = (props) => {
                   <option value="scrap">scrap</option>
                   <option value="used">used</option>
                 </select>
-               {/*  <input type='text' value={status} name='item_donasi'  onChange={(e) => setStatus(e.target.value)} /> */}
               </label>
-              
             </GridItem>
-         {/*    
-            <GridItem xs={12} sm={12} md={8} lg={6}>
-              <label htmlFor='condition' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Kondisi barang</h4>
-                <input type='text' value={condition} name='condition'  onChange={(e) => setCondition( e.target.value)} />
-              </label>
-
-              <label htmlFor='status' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Status Donatur</h4>
-                <select name="status" onChange={(e) => setStatus(e.target.value)}>
-                  <option value={status}>{status}</option>
-                  <option value="valid">Valid</option>
-                  <option value="unvalid">UnValid</option>
-                  <option value="cancel">Cancel</option>
-                </select>
-              </label>
-
-            </GridItem> */}
           </GridContainer>
 
           <button onClick={() => handlePost()}>Submit</button>

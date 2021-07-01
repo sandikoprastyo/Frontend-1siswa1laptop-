@@ -130,9 +130,7 @@ const dashboardAdmin = (props) => {
                 <TableBody>
                   {siswa.map((row, i) => (
                     <TableRow key={i}>
-                      <TableCell component='th' scope='row'>
-                        {row.name}
-                      </TableCell>
+                      <TableCell component='th' scope='row'>{row.siswa_name}</TableCell>
                       <TableCell align='right'>{row.email}</TableCell>
                       <TableCell align='right'>{row.phone}</TableCell>
                       <TableCell align='right'>{row.desc}</TableCell>

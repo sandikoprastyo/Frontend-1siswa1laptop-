@@ -22,36 +22,36 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
-  
+
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Button href='/landing' color='transparent' className={classes.navLink}>
+        <Link href="/">
+        <Button href='/' color='transparent' className={classes.navLink}>
           <Icon className={classes.icons}>home</Icon> Home
         </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href='/landing#about'
-          color='transparent'
-          className={classes.navLink}
-        >
-          <Icon className={classes.icons}>about</Icon> About
-        </Button>
+        <Link href='/#about'>
+          <Button color='transparent' className={classes.navLink}>
+            <Icon className={classes.icons}>about</Icon> About
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href='/landing#donation'
-          color='transparent'
-          className={classes.navLink}
-        >
-          <Icon className={classes.icons}>contact</Icon> Donation
-        </Button>
+        <Link href='/#donation'>
+          <Button color='transparent' className={classes.navLink}>
+            <Icon className={classes.icons}>contact</Icon> Donation
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button href='/login' color='transparent' className={classes.navLink}>
-          <Icon className={classes.icons}>login</Icon>Login
-        </Button>
+        <Link href='/login'>
+          <Button color='transparent' className={classes.navLink}>
+            <Icon className={classes.icons}>login</Icon>Login
+          </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Tooltip

@@ -8,7 +8,7 @@ const sideNavbar = () => {
   
   const _handleLogOut = () => {
   //  browser.cookies.remove('token')
-    router.push('/landing');
+    router.push('/');
   };
   return (
     <div style={wrapperSidenavbar}>
