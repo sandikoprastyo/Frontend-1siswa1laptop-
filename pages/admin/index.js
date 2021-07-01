@@ -145,7 +145,7 @@ const dashboardAdmin = (props) => {
 
       // Draw a string of text toward the top of the page
       const fontSize = 30
-      page.drawText('Tanda Terima Donasi 1Siswa 1Laptop\n Name: \n Email	: \n Phone	: \n desc	: \n item_donasi : \n	category : \n	status : \n	kondisi : \n', {
+      page.drawText('Tanda Terima Donasi 1Siswa 1Laptop\n\n Name  : \n Email	: \n Phone  : \n desc : \n item donasi  : \n category  : \n status  : \n kondisi : \n', {
         x: 50,
         y: height - 4 * fontSize,
         size: fontSize,
