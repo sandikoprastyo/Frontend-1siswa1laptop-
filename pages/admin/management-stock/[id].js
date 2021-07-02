@@ -146,9 +146,20 @@ const dashboardAdmin = (props) => {
                 <input type='text' value={category} name='category'  onChange={(e) => setCategory( e.target.value)} />
               </label>
 
-              <label htmlFor='status' style={{ padding: '0 50px' }}>
+              {/* <label htmlFor='status' style={{ padding: '0 50px' }}>
                 <h4 style={{ color: 'black' }}>Status</h4>
                 <input type='text' value={status} name='status'  onChange={(e) => setStatus(e.target.value)}  />
+              </label> */}
+              <label htmlFor='status' style={{ padding: '0 50px' }}>
+                <h4 style={{ color: 'black' }}>Status Siswa</h4>
+                <select name="status" onChange={(e) => setStatus(e.target.value)}>
+                  <option value={status}>{status}</option>
+                  <option value="draft">draft</option>
+                  <option value="service">service</option>
+                  <option value="ready">ready</option>
+                  <option value="scrap">scrap</option>
+                  <option value="used">used</option>
+                </select>
               </label>
             </GridItem>
           </GridContainer>
