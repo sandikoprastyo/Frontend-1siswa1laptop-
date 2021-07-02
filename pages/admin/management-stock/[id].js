@@ -34,6 +34,7 @@ const dashboardAdmin = (props) => {
   const [status, setStatus] = React.useState()
   const [idDonatur, setIdDonatur] = React.useState()
   const [idAdmin, setIdAdmin] = React.useState()
+  const [donatur, setDonatur] = React.useState([]);
 
 
   const { ...rest } = props;
@@ -43,6 +44,7 @@ const dashboardAdmin = (props) => {
     const cookie = cookieCutter.get('token');
     setTimeout(() => {
       getStock(cookie);
+      getDonatur(cookie);
     }, 5000);
   }, []);
 
@@ -70,6 +72,22 @@ const dashboardAdmin = (props) => {
           console.log(err)
         }
       });
+  };
+
+  const getDonatur = (cookie) => {
+    axios
+      .get('https://protected-scrubland-94267.herokuapp.com/donatur', {
+        headers: {
+          token: cookie,
+        },
+      })
+      .then((res) => {
+        if(res.status === 200) { 
+          setDonatur(res.data.message);
+        } else {  
+          console.log(res)
+        }
+      })
   };
 
   /* update data stock */
@@ -159,6 +177,16 @@ const dashboardAdmin = (props) => {
                   <option value="ready">ready</option>
                   <option value="scrap">scrap</option>
                   <option value="used">used</option>
+                </select>
+              </label>
+
+              <label htmlFor='status' style={{ padding: '0 50px' }}>
+                <h4 style={{ color: 'black' }}>Status Siswa</h4>
+                <select name="status" onChange={(e) => setStatus(e.target.value)}>
+                  <option value={status}>{status}</option>
+                  {donatur.map((row, i) => (
+                    <option value={row.name}>{row.name}</option>
+                  ))}
                 </select>
               </label>
             </GridItem>
