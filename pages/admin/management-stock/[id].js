@@ -66,6 +66,7 @@ const dashboardAdmin = (props) => {
           setSerialNumber(res.data.message.serial_number);
           setCategory(res.data.message.category);
           setStatus(res.data.message.status);
+          setIdDonatur(res.data.message.id_donatur);
 /*           setIdDonatur()
           setIdAdmin() */
         } else {
@@ -99,8 +100,8 @@ const dashboardAdmin = (props) => {
       serial_number : serialNumber,
       category : category,
       status : status,
-    /*   id_donatur: donaturId,
-      id_admin: adminId */
+      id_donatur: idDonatur,
+      // id_admin: adminId
     }
     axios
       .post(
@@ -180,12 +181,11 @@ const dashboardAdmin = (props) => {
                 </select>
               </label>
 
-              <label htmlFor='status' style={{ padding: '0 50px' }}>
+              <label htmlFor='donatur' style={{ padding: '0 50px' }}>
                 <h4 style={{ color: 'black' }}>Status Siswa</h4>
-                <select name="status" onChange={(e) => setStatus(e.target.value)}>
-                  <option value={status}>{status}</option>
+                <select name="Donatur" onChange={(e) => setIdDonatur(e.target.value)}>
                   {donatur.map((row, i) => (
-                    <option value={row.name}>{row.name}</option>
+                    <option value={row.id}>{row.name}</option>
                   ))}
                 </select>
               </label>
