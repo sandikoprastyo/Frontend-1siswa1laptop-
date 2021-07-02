@@ -175,7 +175,7 @@ const dashboardAdmin = (props) => {
               </label>
 
               <label htmlFor='status' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Status Siswa</h4>
+                <h4 style={{ color: 'black' }}>Status Stock</h4>
                 <select name="status" onChange={(e) => setStatus(e.target.value)}>
                   <option value={status}>{status}</option>
                   <option value="Draft">Draft</option>
