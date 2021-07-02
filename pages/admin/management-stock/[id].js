@@ -182,7 +182,7 @@ const dashboardAdmin = (props) => {
               </label>
 
               <label htmlFor='donatur' style={{ padding: '0 50px' }}>
-                <h4 style={{ color: 'black' }}>Status Siswa</h4>
+                <h4 style={{ color: 'black' }}>Donatur</h4>
                 <select name="Donatur" onChange={(e) => setIdDonatur(e.target.value)}>
                   {donatur.map((row, i) => (
                     <option value={row.id}>{row.name}</option>
